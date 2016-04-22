@@ -12,6 +12,8 @@ import java.util.Date;
 import yamato.vtracking.R;
 import yamato.vtracking.utils.SessionManager;
 
+
+//test commit
 public class DashboardActivity extends AppCompatActivity {
 
     private TextView label_userName;
