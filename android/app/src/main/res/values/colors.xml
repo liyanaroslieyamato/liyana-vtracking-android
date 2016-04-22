@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="actionbar_opacity">#33000000</color>
+    <color name="primary">#3f51b5</color>
+    <color name="primary_dark">#303F9F</color>
+    <color name="primary_light">#C5CAE9</color>
+    <color name="accent">#E040FB</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+    <color name="order_detail_background">#CCCCCC</color>
+    <color name="white">#ffffff</color>
+    <color name="divider">#B6B6B6</color>
+    <color name="order_uploaded">#D4425C</color>
+    <color name="order_in_transit">#4487F2</color>
+    <color name="order_return_to_sender">#7A75AA</color>
+    <color name="order_tidiki_sorting_hub">#F28244</color>
+    <color name="order_default">#FCB735</color>
+    <color name="red">#FF0000</color>
+    <color name="exchange_code_text">#FCFF6F</color>
+    <color name="btn_return">#7A76AA</color>
+    <color name="btn_undelivered">#D3435B</color>
+    <color name="btn_delivered">#4AACAD</color>
+    <color name="btn_pickedup">#F38144</color>
+    <color name="btn_warehouse">#6FA7FF</color>
+    <color name="btn_outForDelivery">#AAA920</color>
+    <color name="btn_exchange">#FFFB54</color>
+    <color name="btn_exchange_text">#2961FC</color>
+</resources>
