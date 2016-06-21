@@ -80,7 +80,8 @@ public class ExchangeActivity extends AppCompatActivity {
 
         String exchangeCode = exchangeCodeField.getText().toString();
         String remark = remarksField.getText().toString();
-        showConfirmation("Exchange Confirm", String.format("Tracking Number: %s Exchange Code: %s", exchangeCode, remark));
+        String trackingNumber = trackingNoLabel.getText().toString();
+        showConfirmation("Exchange Confirm", String.format("Tracking Number: %s\n Exchange Code: %s\n Remarks: %s", trackingNumber, exchangeCode, remark));
     }
 
     public void showAlert(String title, String message) {
