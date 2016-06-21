@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -25,6 +27,8 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -266,6 +270,8 @@ public class OrderDetailActivity extends AppCompatActivity implements LocationLi
     }
 
     private void updateOrderStatus(int statusId) {
+        String addressLocation = null;
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.INTERNET)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
@@ -274,6 +280,28 @@ public class OrderDetailActivity extends AppCompatActivity implements LocationLi
         }
 
         Location currentLocation = this.getLocation();
+
+        Geocoder geocoder = new Geocoder(this, Locale.ENGLISH);
+        try {
+            List<Address> addresses = geocoder.getFromLocation(currentLocation.getLatitude(), currentLocation.getLongitude(), 1);
+            if(addresses != null) {
+                Address returnedAddress = addresses.get(0);
+                StringBuilder strReturnedAddress = new StringBuilder();
+                for(int i=0; i<returnedAddress.getMaxAddressLineIndex(); i++) {
+                    strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("\n");
+                }
+                strReturnedAddress.append(returnedAddress.getCountryName()).append("\n");
+                strReturnedAddress.append(returnedAddress.getPostalCode());
+                addressLocation = strReturnedAddress.toString();
+            }
+            else {
+                Toast.makeText(getApplicationContext(), "No address returned", Toast.LENGTH_SHORT).show();
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Cannot get address", Toast.LENGTH_SHORT).show();
+        }
 
         if (currentLocation == null) {
             Toast.makeText(getApplicationContext(), "Cannot Update Order due to NO GPS access.", Toast.LENGTH_SHORT).show();
@@ -287,7 +315,7 @@ public class OrderDetailActivity extends AppCompatActivity implements LocationLi
         urlBuilder.addQueryParameter("handset_user_id", SessionManager.instance(this.getApplicationContext()).getHandSetUserId());
         urlBuilder.addQueryParameter("longitude", "" + currentLocation.getLongitude());
         urlBuilder.addQueryParameter("latitude", "" + currentLocation.getLatitude());
-        urlBuilder.addQueryParameter("location", currentLocation.toString());
+        urlBuilder.addQueryParameter("location", addressLocation);
         urlBuilder.addQueryParameter("exchange_code", this.exchangeCodeLabel.getText().toString());
         urlBuilder.addQueryParameter("remarks", this.remarkContentEditText.getText().toString());
 

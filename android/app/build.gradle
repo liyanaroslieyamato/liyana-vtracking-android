@@ -33,4 +33,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.6.2'
     provided 'org.glassfish:javax.annotation:10.0-b28'
     compile 'com.google.guava:guava:19.0'
+    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
 }
